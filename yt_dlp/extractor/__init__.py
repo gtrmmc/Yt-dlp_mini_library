@@ -31,8 +31,6 @@ from .twitter import TwitterIE
 # Snapchat (Exactly matching your file)
 from .snapchat import SnapchatSpotlightIE
 
-# Moj
-from .moj import MojIE
 
 
 # Selected Supported Extractors List
