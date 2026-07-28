@@ -4,7 +4,7 @@ from ..globals import plugin_ies as _plugin_ies_context
 # Target Platforms ke Extractors Import
 from .generic import GenericIE
 
-# YouTube (Only stable core extractors)
+# YouTube
 from .youtube import (
     YoutubeIE,
     YoutubePlaylistIE,
@@ -25,11 +25,14 @@ from .facebook import FacebookIE, FacebookPluginsVideoIE
 # TikTok
 from .tiktok import TikTokIE, TikTokUserIE, TikTokVMIE
 
-# Twitter / X 
+# Twitter / X
 from .twitter import TwitterIE
 
-# Snapchat (Removed SnapchatIE, kept SnapchatStoryIE)
-from .snapchat import SnapchatStoryIE
+# Snapchat (Exactly matching your file)
+from .snapchat import SnapchatSpotlightIE
+
+# Moj
+from .moj import MojIE
 
 
 # Selected Supported Extractors List
@@ -57,7 +60,9 @@ _MINI_EXTRACTORS = [
     # Twitter / X
     TwitterIE,
     # Snapchat
-    SnapchatStoryIE,
+    SnapchatSpotlightIE,
+    # Moj
+    MojIE,
     # Generic Fallback
     GenericIE,
 ]
@@ -97,4 +102,3 @@ def get_info_extractor(ie_name):
         if ie.__name__ == f'{ie_name}IE':
             return ie
     return None
-	
