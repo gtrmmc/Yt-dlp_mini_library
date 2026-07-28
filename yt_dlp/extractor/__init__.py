@@ -25,11 +25,11 @@ from .facebook import FacebookIE, FacebookPluginsVideoIE
 # TikTok
 from .tiktok import TikTokIE, TikTokUserIE, TikTokVMIE
 
-# Twitter / X (Only TwitterIE needed)
+# Twitter / X 
 from .twitter import TwitterIE
 
-# Snapchat
-from .snapchat import SnapchatIE, SnapchatStoryIE
+# Snapchat (Removed SnapchatIE, kept SnapchatStoryIE)
+from .snapchat import SnapchatStoryIE
 
 
 # Selected Supported Extractors List
@@ -57,7 +57,6 @@ _MINI_EXTRACTORS = [
     # Twitter / X
     TwitterIE,
     # Snapchat
-    SnapchatIE,
     SnapchatStoryIE,
     # Generic Fallback
     GenericIE,
@@ -98,3 +97,4 @@ def get_info_extractor(ie_name):
         if ie.__name__ == f'{ie_name}IE':
             return ie
     return None
+	
