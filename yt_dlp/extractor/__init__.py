@@ -61,8 +61,6 @@ _MINI_EXTRACTORS = [
     TwitterIE,
     # Snapchat
     SnapchatSpotlightIE,
-    # Moj
-    MojIE,
     # Generic Fallback
     GenericIE,
 ]
