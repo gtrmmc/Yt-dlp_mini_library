@@ -34,7 +34,6 @@ from .twitter import TwitterIE, TwitterShortUrlIE
 from .snapchat import SnapchatIE, SnapchatStoryIE
 
 
-
 # Selected Supported Extractors List
 _MINI_EXTRACTORS = [
     # YouTube
