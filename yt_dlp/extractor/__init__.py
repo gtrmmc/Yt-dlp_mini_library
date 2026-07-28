@@ -4,14 +4,13 @@ from ..globals import plugin_ies as _plugin_ies_context
 # Target Platforms ke Extractors Import
 from .generic import GenericIE
 
-# YouTube
+# YouTube (Only stable core extractors)
 from .youtube import (
     YoutubeIE,
     YoutubePlaylistIE,
     YoutubeTabIE,
     YoutubeSearchIE,
     YoutubeSearchURLIE,
-    YoutubeShortsTabIE,
     YoutubeClipIE,
     YoutubeTruncatedIDIE,
     YoutubeTruncatedURLIE,
@@ -41,7 +40,6 @@ _MINI_EXTRACTORS = [
     YoutubeTabIE,
     YoutubeSearchIE,
     YoutubeSearchURLIE,
-    YoutubeShortsTabIE,
     YoutubeClipIE,
     YoutubeTruncatedIDIE,
     YoutubeTruncatedURLIE,
@@ -101,4 +99,3 @@ def get_info_extractor(ie_name):
         if ie.__name__ == f'{ie_name}IE':
             return ie
     return None
-	
