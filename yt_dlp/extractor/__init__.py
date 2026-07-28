@@ -1,7 +1,10 @@
 from ..globals import extractors as _extractors_context
 from ..globals import plugin_ies as _plugin_ies_context
 
-# Sirf YouTube extractors ko import kar rahe hain (GenericIE completely removed)
+# Target Platforms ke Extractors Import
+from .generic import GenericIE
+
+# YouTube
 from .youtube import (
     YoutubeIE,
     YoutubePlaylistIE,
@@ -15,8 +18,26 @@ from .youtube import (
     YoutubeTruncatedURLIE,
 )
 
-# Yeh tumhari mini-library ka naya aur clean extractor list hai
+# Instagram
+from .instagram import InstagramIE, InstagramUserIE, InstagramStoryIE
+
+# Facebook
+from .facebook import FacebookIE, FacebookPluginsVideoIE
+
+# TikTok
+from .tiktok import TikTokIE, TikTokUserIE, TikTokVMIE
+
+# Twitter / X
+from .twitter import TwitterIE, TwitterShortUrlIE
+
+# Snapchat
+from .snapchat import SnapchatIE, SnapchatStoryIE
+
+
+
+# Selected Supported Extractors List
 _MINI_EXTRACTORS = [
+    # YouTube
     YoutubeIE,
     YoutubePlaylistIE,
     YoutubeTabIE,
@@ -27,44 +48,60 @@ _MINI_EXTRACTORS = [
     YoutubeClipIE,
     YoutubeTruncatedIDIE,
     YoutubeTruncatedURLIE,
+    # Instagram
+    InstagramIE,
+    InstagramUserIE,
+    InstagramStoryIE,
+    # Facebook
+    FacebookIE,
+    FacebookPluginsVideoIE,
+    # TikTok
+    TikTokIE,
+    TikTokUserIE,
+    TikTokVMIE,
+    # Twitter / X
+    TwitterIE,
+    TwitterShortUrlIE,
+    # Snapchat
+    SnapchatIE,
+    SnapchatStoryIE,
+    # Generic Fallback
+    GenericIE,
 ]
 
 
 def import_extractors():
-    """ 
-    Original code yahan 'extractors.py' load karta tha.
-    Bypass kar diya gaya hai.
-    """
+    """ Dynamic extractors load bypass """
     pass
 
 
 def gen_extractor_classes():
-    """ Return a list of supported extractors. """
+    """ Return supported extractors list """
     return _MINI_EXTRACTORS
 
 
 def gen_extractors():
-    """ Return a list of an instance of every supported extractor. """
+    """ Return instance of every supported extractor """
     return [klass() for klass in gen_extractor_classes()]
 
 
 def list_extractor_classes(age_limit=None):
-    """Return a list of extractors that are suitable for the given age, sorted by extractor name"""
-    # GenericIE ka logic yahan se bhi hata diya gaya hai
+    """ Return sorted list of extractors """
     yield from sorted(filter(
-        lambda ie: ie.is_suitable(age_limit),
+        lambda ie: ie.is_suitable(age_limit) and ie != GenericIE,
         gen_extractor_classes()), key=lambda ie: ie.IE_NAME.lower())
+    yield GenericIE
 
 
 def list_extractors(age_limit=None):
-    """Return a list of extractor instances that are suitable for the given age, sorted by extractor name"""
+    """ Return extractor names list """
     return [ie() for ie in list_extractor_classes(age_limit)]
 
 
 def get_info_extractor(ie_name):
-    """Returns the info extractor class with the given ie_name"""
+    """ Return info extractor class by name """
     for ie in gen_extractor_classes():
         if ie.__name__ == f'{ie_name}IE':
             return ie
     return None
-    
+	
