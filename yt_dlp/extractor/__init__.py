@@ -25,8 +25,8 @@ from .facebook import FacebookIE, FacebookPluginsVideoIE
 # TikTok
 from .tiktok import TikTokIE, TikTokUserIE, TikTokVMIE
 
-# Twitter / X
-from .twitter import TwitterIE, TwitterShortUrlIE
+# Twitter / X (Only TwitterIE needed)
+from .twitter import TwitterIE
 
 # Snapchat
 from .snapchat import SnapchatIE, SnapchatStoryIE
@@ -56,7 +56,6 @@ _MINI_EXTRACTORS = [
     TikTokVMIE,
     # Twitter / X
     TwitterIE,
-    TwitterShortUrlIE,
     # Snapchat
     SnapchatIE,
     SnapchatStoryIE,
